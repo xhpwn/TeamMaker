@@ -1,0 +1,59 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+  
+  a {
+    color: white;
+  }
+  
+  .paddingclass {
+    padding-top: 5%
+  }
+  
+  h1 {
+    text-align: center;
+    color: darkblue;
+    padding: 3% 0 3% 0;
+    font-size: 4em;
+  }
+  
+  h2 {
+    text-align: center;
+    padding-top: 0%;
+    padding-bottom: 4%;
+  }
+  
+  h3 {
+    text-align: center;
+    color: darkblue;
+    font-size: 2em;
+    padding-bottom: 3%;
+  }
+  
+  h5 {
+    text-align: center;
+  }
+  
+  h6 {
+    font-size: 5.5em;
+    color: darkslateblue
+  }
+  
+  .marginer {
+    margin-right: 2%;
+  }
+  
+  .form-control {
+    margin:0px auto;
+    width: 25%;
+  }
+  
+  .formstyle {
+    margin-top: 3.5%;
+    text-align: center;
+    margin-bottom: 3.5%;
+  }
+  
+  .buttoner {
+    margin-bottom: 2%;
+  }

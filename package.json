@@ -2,9 +2,10 @@
   "name": "teammaker",
   "version": "1.0.0",
   "description": "Machine learning based team matching and generation.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "build": "del-cli public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch",
+    "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'assets/app/**/*.js' 'assets/app/**/*.ngsummary.json' 'assets/app/**/*.ngstyle.*'"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",
