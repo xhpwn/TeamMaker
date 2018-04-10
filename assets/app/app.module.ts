@@ -4,6 +4,7 @@ import { HttpModule } from "@angular/http";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.compnent';
+import { routing } from './app.routing';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { NavbarComponent } from './navbar/navbar.compnent';
     ],
     imports: [
         BrowserModule,
-        HttpModule
+        HttpModule,
+        routing
     ],
     bootstrap: [AppComponent]
 })
