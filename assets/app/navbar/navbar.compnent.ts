@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-navbar',
@@ -15,21 +16,40 @@ import { Component } from "@angular/core";
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <span class="glyphicon glyphicon-home"></span>
-            <span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams
-            <span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams
+            <li routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/teams']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
+            <li *ngIf="!isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/nouser']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <span class="glyphicon glyphicon-user"></span> Account
+            <li routerLinkActive="active"><a [routerLink]="['/auth']"><span class="glyphicon glyphicon-user"></span> Account</a></li>
         </ul>
         </div>
     </div>
     </nav>
     `,
-    styleUrls: ['./navbar.component.css']
+    styleUrls: [`
+    body {
+        padding-top: 50px;
+        position: relative;
+    }
+    
+    pre {
+        tab-size: 8;
+    }
+    
+    .navmain {
+        color: white;
+        padding-right: 50px;
+    }
+    `]
 })
 
 export class NavbarComponent {
+    constructor(private authService: AuthService) {}
 
     username: string;
+    isLoggedIn() {
+        this.username = localStorage.getItem('userName');
+        return this.authService.isLoggedIn();
+    }
 }
