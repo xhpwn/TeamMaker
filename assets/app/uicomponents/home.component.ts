@@ -3,7 +3,7 @@ import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-home',
-    templateUrl: `
+    templateUrl: `    
     <div *ngIf="!isLoggedIn()" class="text-center">
 
     <h1><span class="glyphicon glyphicon-indent-left"></span> TeamMaker</h1>

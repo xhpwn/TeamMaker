@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     template: `
     <app-navbar></app-navbar>
     <app-home></app-home>
+    <app-error></app-error>
 `
 })
 export class AppComponent {

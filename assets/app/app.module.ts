@@ -8,12 +8,16 @@ import { routing } from './app.routing';
 import { AuthService } from './auth/auth.service';
 import { ErrorService } from './errors/error.service';
 import { HomeComponent } from './uicomponents/home.component';
+import { AuthenticationComponent } from './auth/authentication.component';
+import { ErrorComponent } from './errors/error.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
-        HomeComponent
+        HomeComponent,
+        AuthenticationComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,
