@@ -11,7 +11,7 @@ import { ErrorService } from "./errors/error.service";
 import { HomeComponent } from './uicomponents/home.component';
 import { TeamsComponent } from './uicomponents/teams.component';
 import { NoUserComponent } from './uicomponents/nouser.component';
-import { NavbarComponent } from './navbar/navbar.compnent';
+import { NavbarComponent } from './uicomponents/navbar.compnent';
 
 @NgModule({
     declarations: [
