@@ -11,7 +11,7 @@ import { AuthService } from "../auth/auth.service";
 
 <h3>Intelligent team making</h3>
 
-    <button class="btn btn-lg btn-success marginer" [routerLink]="['/auth/signin']">Login</button>
+    <button class="btn btn-lg btn-success marginer" [routerLink]="['/auth/signin']" >Login</button>
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth/signup']">Sign Up</button>
 </div>
 
