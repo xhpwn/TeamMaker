@@ -6,26 +6,26 @@ import { AuthService } from "../auth/auth.service";
     templateUrl: `
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar-header">
+      <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
         </button>
         <a onmouseover="this.style.cursor = 'default'" class="navbar-brand navmain"><span class="glyphicon glyphicon-indent-left"></span> TeamMaker</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/teams']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
-            <li *ngIf="!isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/nouser']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
+          <li routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span></a></li>
+          <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/teams']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
+          <li *ngIf="!isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/nouser']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li routerLinkActive="active"><a [routerLink]="['/auth']"><span class="glyphicon glyphicon-user"></span> Account</a></li>
+          <li routerLinkActive="active"><a [routerLink]="['/auth']"><span class="glyphicon glyphicon-user"></span> Account</a></li>
         </ul>
-        </div>
+      </div>
     </div>
-    </nav>
+  </nav>
     `,
     styleUrls: [`
     body {

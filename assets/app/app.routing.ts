@@ -2,8 +2,8 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { HomeComponent } from "./uicomponents/home.component";
-import { TeamsComponent } from "./teams.component";
-import { NoUserComponent } from "./nouser.component";
+import { TeamsComponent } from "./uicomponents/teams.component";
+import { NoUserComponent } from "./uicomponents/nouser.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
