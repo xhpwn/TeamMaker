@@ -1,36 +1,29 @@
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { Component } from "@angular/core";
-import { AuthService } from "../auth/auth.service";
+import { TeamService } from "../teams/team.service";
 import { NoUserComponent } from "./nouser.component";
+import { Team } from "../teams/team.model";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-teams',
     template: `
     <div class="text-center paddingclass col-md-8 col-md-offset-2">
         <h2>New Team</h2>
-        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                        type="email"
-                        id="email"
-                        class="form-control"
-                        formControlName="email">
+            <label for="teamName">Name</label>
+            <input
+                    type="text"
+                    id="teamName"
+                    class="form-control"
+                    [ngModel]="team?.teamName"
+                    name="teamName"
+                    required>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                        type="password"
-                        id="password"
-                        class="form-control"
-                        formControlName="password">
-            </div>
-            <button
-                    class="btn btn-primary"
-                    type="submit"
-                    [disabled]="!myForm.valid">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
     `
@@ -38,10 +31,19 @@ import { NoUserComponent } from "./nouser.component";
 
 export class NewTeamComponent {
 
-    myForm: FormGroup;
+    team: Team;
 
-    constructor(private authService: AuthService) {}
+    constructor(private teamService: TeamService, private authService: AuthService) {}
 
+    onSubmit(form: NgForm) {
+        
+        const team = new Team(form.value.teamName, localStorage.getItem('userId'));
+        this.teamService.addTeam(team)
+            .subscribe(
+                data => console.log(data),
+        );
+        form.resetForm();
+    }
     
     username: string;
     isLoggedIn() {

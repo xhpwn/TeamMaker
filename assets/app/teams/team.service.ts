@@ -7,26 +7,48 @@ import { Team } from './team.model';
 import { ErrorService } from "../errors/error.service";
 
 @Injectable()
-export class MessageService {
+export class TeamService {
     private teams: Team[] = [];
 
     constructor(private http: Http, private errorService: ErrorService) {
     }
 
-    addMessage(team: Team) {
+    addTeam(team: Team) {
+        
         const body = JSON.stringify(team);
+        console.log(body);
         const headers = new Headers({'Content-Type': 'application/json'});
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('http://localhost:3000/team' + token, body, {headers: headers})
+        return this.http.post('http://localhost:3000/team/newteam' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
-                const message = new Team(
+                const team = new Team(
                     result.obj.teamName,
-                    result.obj.user);
+                    result.obj.admin);
                 this.teams.push(team);
-                return message;
+                return team;
+            })
+            .catch((error: Response) => {
+                this.errorService.handleError(error.json());
+                return Observable.throw(error.json());
+            });
+    }
+
+    getTeams() {
+        return this.http.get('http://localhost:3000/team')
+            .map((response: Response) => {
+                const teams = response.json().obj;
+                let transformedTeams: Team[] = [];
+                for (let team of teams) {
+                    transformedTeams.push(new Team(
+                        team.teamName,
+                        team.admin)
+                    );
+                }
+                this.teams = transformedTeams;
+                return transformedTeams;
             })
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
