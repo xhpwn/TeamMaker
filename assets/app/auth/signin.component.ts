@@ -30,7 +30,7 @@ import { AuthService } from "./auth.service";
             <button
                     class="btn btn-primary"
                     type="submit"
-                    [disabled]="!myForm.valid">Submit</button>
+                    [disabled]="!myForm.valid">Login</button>
         </form>
     </div>
     `

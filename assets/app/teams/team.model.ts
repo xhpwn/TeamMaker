@@ -1,9 +1,13 @@
 export class Team {
     teamName: string;
-    admin: string;
+    teamSize: Number;
+    adminId: string;
+    adminEmail: string;
 
-    constructor(teamName: string, admin: string) {
+    constructor(teamName: string, teamSize: Number, adminId: string, adminEmail: string) {
         this.teamName = teamName;
-        this.admin = admin;
+        this.teamSize = teamSize;
+        this.adminId = adminId;
+        this.adminEmail = adminEmail;
     }
 }

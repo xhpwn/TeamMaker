@@ -45,7 +45,7 @@ import { User } from "./user.model";
             <button
                     class="btn btn-primary"
                     type="submit"
-                    [disabled]="!myForm.valid">Submit</button>
+                    [disabled]="!myForm.valid">Sign Up</button>
         </form>
     </div>
     `

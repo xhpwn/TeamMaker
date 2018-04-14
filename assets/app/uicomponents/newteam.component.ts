@@ -10,8 +10,8 @@ import { AuthService } from "../auth/auth.service";
 @Component({
     selector: 'app-teams',
     template: `
-    <div class="text-center paddingclass col-md-8 col-md-offset-2">
-        <h2>New Team</h2>
+    <h2>New Group</h2>
+    <div class="text-center col-md-8 col-md-offset-2">
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
             <div class="form-group">
             <label for="teamName">Name</label>
@@ -23,7 +23,21 @@ import { AuthService } from "../auth/auth.service";
                     name="teamName"
                     required>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <label for="sel1">Team Size</label>
+            <select 
+                class="form-control"
+                    id="teamSize"
+                    class="form-control"
+                    [ngModel]="team?.teamSize"
+                    name="teamSize"
+                    required
+                >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+            <button style="margin-top: 2%" class="btn btn-primary" type="submit">Create</button>
         </form>
     </div>
     `
@@ -33,16 +47,18 @@ export class NewTeamComponent {
 
     team: Team;
 
-    constructor(private teamService: TeamService, private authService: AuthService) {}
+    constructor(private teamService: TeamService, private authService: AuthService, private router: Router) {}
 
     onSubmit(form: NgForm) {
         
-        const team = new Team(form.value.teamName, localStorage.getItem('userId'));
+        const team = new Team(form.value.teamName, form.value.teamSize, localStorage.getItem('userId'), localStorage.getItem('userEmail'));
         this.teamService.addTeam(team)
             .subscribe(
                 data => console.log(data),
         );
         form.resetForm();
+        alert("Team Successfully Created!");
+        this.router.navigate(['/teams', 'myteams']);
     }
     
     username: string;

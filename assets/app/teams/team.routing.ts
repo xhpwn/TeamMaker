@@ -4,7 +4,7 @@ import { NewTeamComponent } from "../uicomponents/newteam.component";
 import { TeamListComponent } from  './team-list.component';
 
 const TEAM_ROUTES: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: '', redirectTo: 'myteams', pathMatch: 'full' },
     { path: 'newteam', component: NewTeamComponent },
     { path: 'myteams', component: TeamListComponent }
 ];

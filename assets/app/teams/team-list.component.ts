@@ -6,6 +6,7 @@ import { TeamComponent } from "./team.component";
 @Component({
     selector: 'app-team-list',
     template: `
+    <h2>My Teams</h2>
         <div class="col-md-8 col-md-offset-2">
             <app-team
                    [team]="team"

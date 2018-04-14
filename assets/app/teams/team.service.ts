@@ -26,7 +26,9 @@ export class TeamService {
                 const result = response.json();
                 const team = new Team(
                     result.obj.teamName,
-                    result.obj.admin);
+                    result.obj.teamSize,
+                    result.obj.adminId,
+                    result.obj.adminEmail);
                 this.teams.push(team);
                 return team;
             })
@@ -44,7 +46,9 @@ export class TeamService {
                 for (let team of teams) {
                     transformedTeams.push(new Team(
                         team.teamName,
-                        team.admin)
+                        team.teamSize,
+                        team.adminId,
+                        team.adminEmail)
                     );
                 }
                 this.teams = transformedTeams;

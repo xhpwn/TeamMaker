@@ -15,14 +15,15 @@ import { AuthService } from "../auth/auth.service";
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth/signup']">Sign Up</button>
 </div>
 
-<div *ngIf="isLoggedIn()" class="text-center">
-    <h2 style="padding-top: 5%">Hello, {{ username }}.</h2>
-    <h6>Welcome to TeamMaker</h6>
+<div *ngIf="isLoggedIn()" class="text-center" style="padding-top: 5%; margin-left: 30%; margin-right: 30%; background-color: white">
+    <h2>Hello, {{ username }}.</h2>
+    <h1>Welcome to TeamMaker</h1>
     <div>
-    <span style="font-size: 6em; padding-top: 2%; padding-bottom: 4%; color: darkslateblue" class="glyphicon glyphicon-indent-left"></span>
+    <span style="font-size: 6em; padding-bottom: 6%; color: darkslateblue" class="glyphicon glyphicon-indent-left"></span>
     </div>
+    <button style="margin-right: 2%" class="btn btn-lg btn-primary" [routerLink]="['/teams']">Tutorial</button>
     <button style="margin-right: 2%" class="btn btn-lg btn-success" [routerLink]="['/teams']">My Teams</button>
-    <button class="btn btn-lg btn-danger" [routerLink]="['/auth']">My Account</button>
+    <button class="btn btn-lg btn-danger" [routerLink]="['/auth']">Account</button>
 </div>
 <div class="text-center" style="padding-top: 5%; padding-left: 15%; padding-bottom: 5%; margin-left: 30%; margin-right: 30%; background-color: white">
     <app-ml></app-ml>
