@@ -5,11 +5,11 @@ import { AuthService } from "../auth/auth.service";
     selector: 'app-home',
     templateUrl: `    
     
-<div *ngIf="!isLoggedIn()" class="text-center">
+<div *ngIf="!isLoggedIn()" class="text-center" style="padding-top: 5%; margin-left: 30%; margin-right: 30%; background-color: white">
 
 <h1><span class="glyphicon glyphicon-indent-left"></span> TeamMaker</h1>
 
-<h3>Intelligent team making</h3>
+<h3>Machine Learning-Based Team Generation</h3>
 
     <button class="btn btn-lg btn-success marginer" [routerLink]="['/auth/signin']" >Login</button>
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth/signup']">Sign Up</button>
@@ -23,6 +23,9 @@ import { AuthService } from "../auth/auth.service";
     </div>
     <button style="margin-right: 2%" class="btn btn-lg btn-success" [routerLink]="['/teams']">My Teams</button>
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth']">My Account</button>
+</div>
+<div class="text-center" style="padding-top: 5%; padding-left: 15%; padding-bottom: 5%; margin-left: 30%; margin-right: 30%; background-color: white">
+    <app-ml></app-ml>
 </div>
     `
 })

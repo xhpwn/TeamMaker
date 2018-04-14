@@ -9,12 +9,12 @@ import { Router } from "@angular/router";
         <h2 class="paddingclass">Hello, {{ username }}.</h2>
         <h3>Your email address is {{ useremail }}</h3>
     </div>
-    <div class="text-center paddingclass">
+    <div class="text-center paddingclass" style="padding-bottom: 5%">
         <a [routerLink]="['signin']"><button class="btn btn-lg btn-success marginer" *ngIf="!isLoggedIn()">Sign In</button></a>
         <a [routerLink]="['signup']"><button class="btn btn-lg btn-primary" routerLinkActive="active" *ngIf="!isLoggedIn()">Sign Up</button></a>
         <a><button class="btn btn-lg btn-danger" routerLinkActive="active" *ngIf="isLoggedIn()" (click)="onLogout()">Logout</button></a>
     </div>
-    <div class="row spacing">
+    <div class="row spacing" style="border-radius: 20px; background-color: white; margin-left: 30%; margin-right: 30%; padding-bottom: 5%">
         <router-outlet></router-outlet>
     </div>
     `

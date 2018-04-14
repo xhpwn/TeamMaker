@@ -12,6 +12,7 @@ import { HomeComponent } from './uicomponents/home.component';
 import { TeamsComponent } from './uicomponents/teams.component';
 import { NoUserComponent } from './uicomponents/nouser.component';
 import { NavbarComponent } from './uicomponents/navbar.compnent';
+import { MlComponent } from './uicomponents/ml.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { NavbarComponent } from './uicomponents/navbar.compnent';
         ErrorComponent,
         HomeComponent,
         TeamsComponent,
-        NoUserComponent
+        NoUserComponent,
+        MlComponent
     ],
     imports: [
         BrowserModule,
