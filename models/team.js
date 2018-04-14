@@ -7,7 +7,7 @@ var Preference = require('./preference');
 
 var schema = new Schema({
     teamName: {type: String, required: true},
-    admin: {type: String, required: true}
+    admin: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 schema.plugin(mongooseUniqueValidator);

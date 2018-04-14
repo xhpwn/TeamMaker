@@ -5,10 +5,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { teamRouting } from "./team.routing";
 import { NewTeamComponent } from '../uicomponents/newteam.component';
 import { TeamService } from './team.service';
+import { TeamComponent } from './team.component';
+import { TeamListComponent } from './team-list.component';
 
 @NgModule({
     declarations: [
-        NewTeamComponent
+        NewTeamComponent,
+        TeamComponent,
+        TeamListComponent
     ],
     imports: [
         CommonModule,

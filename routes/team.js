@@ -38,7 +38,7 @@ router.post('/newteam', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
     Team.find()
-        .populate('teamName', 'admin')
+        .populate('user', 'firstName')
         .exec(function (err, teams) {
             if (err) {
                 return res.status(500).json({
