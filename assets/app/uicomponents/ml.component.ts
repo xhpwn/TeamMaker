@@ -13,7 +13,7 @@ import { Component } from "@angular/core";
     styles: [`
     .circle__wrapper {
       position: relative;
-      width: 160px;
+      width: 40vw;
       height: 160px;
     }
     
