@@ -27,7 +27,7 @@ import { AuthService } from "../auth/auth.service";
     </div>
   </nav>
     `,
-    styleUrls: [`
+    styles: [`
     body {
         padding-top: 50px;
         position: relative;
