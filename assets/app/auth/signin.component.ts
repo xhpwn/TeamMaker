@@ -7,7 +7,7 @@ import { AuthService } from "./auth.service";
 
 @Component({
     selector: 'app-signin',
-    templateUrl: `
+    template: `
     <div class="text-center paddingclass col-md-8 col-md-offset-2">
         <h2>Sign in to your account</h2>
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">

@@ -3,7 +3,7 @@ import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-navbar',
-    templateUrl: `
+    template: `
     <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">

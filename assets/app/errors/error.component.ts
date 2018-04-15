@@ -5,7 +5,7 @@ import { ErrorService } from "./error.service";
 
 @Component({
     selector: 'app-error',
-    templateUrl: `
+    template: `
     <div class="backdrop" [ngStyle]="{'display': display}"></div>
     <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': display}">
         <div class="modal-dialog" role="document">

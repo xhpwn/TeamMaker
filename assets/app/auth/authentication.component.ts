@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-auth',
-    templateUrl: `
+    template: `
     <div *ngIf="isLoggedIn()" class="text-center">
         <h2 class="paddingclass">Hello, {{ username }}.</h2>
         <p style="font-size: 2em; color: green; padding-bottom: 1%">Email: {{ useremail }}</p>

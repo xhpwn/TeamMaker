@@ -6,7 +6,7 @@ import { User } from "./user.model";
 
 @Component({
     selector: 'app-signup',
-    templateUrl: `
+    template: `
     <div class="text-center paddingclass col-md-8 col-md-offset-2">
             <h2>Sign up for TeamMaker</h2>
         <form [formGroup]="myForm" (ngSubmit)="onSubmit()">

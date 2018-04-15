@@ -3,7 +3,7 @@ import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-home',
-    templateUrl: `    
+    template: `    
     
 <div *ngIf="!isLoggedIn()" class="text-center" style="padding-top: 5%; margin-left: 30%; margin-right: 30%; background-color: white">
 
