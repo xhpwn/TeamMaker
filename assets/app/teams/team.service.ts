@@ -21,7 +21,7 @@ export class TeamService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.post('http://localhost:3000/team/newteam' + token, body, {headers: headers})
+        return this.http.post('https://teammaker-deployment.herokuapp.com/team/newteam' + token, body, {headers: headers})
             .map((response: Response) => {
                 const result = response.json();
                 const team = new Team(
@@ -39,7 +39,7 @@ export class TeamService {
     }
 
     getTeams() {
-        return this.http.get('http://localhost:3000/team')
+        return this.http.get('https://teammaker-deployment.herokuapp.com/team')
             .map((response: Response) => {
                 const teams = response.json().obj;
                 let transformedTeams: Team[] = [];
