@@ -1,4 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
+
+import { Component, Input, OnInit } from "@angular/core";
 import { Team } from "./team.model";
 import { TeamService } from "./team.service";
 
@@ -15,7 +17,7 @@ import { TeamService } from "./team.service";
             </div>
             <div class="config">
                 <a data-toggle="collapse" data-target="#teams" style="color: darkblue" (click)="onEdit()">Teams</a> | 
-                <a data-toggle="collapse" data-target="#members" style="color: darkblue" (click)="onEdit()">Manage Group</a> | 
+                <a data-toggle="collapse" data-target="#members" style="color: darkblue">Members</a> | 
                 <a style="color: darkblue" (click)="onGenerate()">Generate</a>
             </div>
             <div style="padding-bottom: 2%;" id="teams" class="collapse">Teams
@@ -23,10 +25,23 @@ import { TeamService } from "./team.service";
                 </div>
             </div>
             <div style="padding-bottom: 2%;" id="members" class="collapse">Members
-                <div style="padding-top: 2%; color: red" *ngIf="!anyMembers()">No Members yet! Add someone to this group below!
+                <div style="padding-top: 2%; padding-bottom: 2%; color: red" *ngIf="!anyMembers()">No Members yet! Add someone to this group below!
                 </div>
-                <div style="padding-top: 2%; color: red" *ngIf="anyMembers()">
+                <div style="padding-top: 2%; padding-bottom: 2%; color: red" *ngIf="anyMembers()">
                 </div>
+                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="form-group" style="text-align: center">
+                <input style="margin-bottom: 2%"
+                        type="text"
+                        id="inviteEmail"
+                        class="form-control"
+                        formControlName="inviteEmail">
+                    <button
+                    class="btn btn-primary"
+                    type="submit"
+                    [disabled]="!myForm.valid">Invite</button>
+                    </div>
+                </form>
             </div>
         </footer>
     </article>
@@ -51,7 +66,9 @@ import { TeamService } from "./team.service";
     `]
 })
 
-export class TeamComponent {
+export class TeamComponent implements OnInit {
+
+    myForm: FormGroup;
 
     @Input() team: Team;
 
@@ -67,6 +84,15 @@ export class TeamComponent {
 
     anyTeams() {
         return false;
+    }
+
+    ngOnInit() {
+        this.myForm = new FormGroup({
+            inviteEmail: new FormControl(null, [
+                Validators.required,
+                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            ])
+        });
     }
 
 }
