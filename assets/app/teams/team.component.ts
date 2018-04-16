@@ -18,9 +18,15 @@ import { TeamService } from "./team.service";
                 <a data-toggle="collapse" data-target="#members" style="color: darkblue" (click)="onEdit()">Manage Group</a> | 
                 <a style="color: darkblue" (click)="onGenerate()">Generate</a>
             </div>
-            <div id="teams" class="collapse">Teams
+            <div style="padding-bottom: 2%;" id="teams" class="collapse">Teams
+                <div style="padding-top: 2%; color: red" *ngIf="!anyTeams()">No Teams yet! Hit the generate button after adding members!
+                </div>
             </div>
-            <div id="members" class="collapse">Members
+            <div style="padding-bottom: 2%;" id="members" class="collapse">Members
+                <div style="padding-top: 2%; color: red" *ngIf="!anyMembers()">No Members yet! Add someone to this group below!
+                </div>
+                <div style="padding-top: 2%; color: red" *ngIf="anyMembers()">
+                </div>
             </div>
         </footer>
     </article>
@@ -53,6 +59,14 @@ export class TeamComponent {
 
     belongsToUser() {
         return localStorage.getItem('userId') == this.team.adminId;
+    }
+
+    anyMembers() {
+        return false;
+    }
+
+    anyTeams() {
+        return false;
     }
 
 }
