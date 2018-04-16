@@ -17,8 +17,9 @@ import { AuthService } from "../auth/auth.service";
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/home']"><span class="glyphicon glyphicon-home"></span></a></li>
-          <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/teams']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
-          <li *ngIf="!isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/nouser']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Teams</a></li>
+          <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/teams']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Groups</a></li>
+          <li *ngIf="!isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/nouser']"><span class="glyphicon glyphicon-indent-left"></span>&nbsp;&nbsp;Groups</a></li>
+          <li *ngIf="isLoggedIn()" routerLinkActive="active" onmouseover="this.style.cursor = 'pointer'"><a [routerLink]="['/tutorial']"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;Tutorial</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li routerLinkActive="active"><a [routerLink]="['/auth']"><span class="glyphicon glyphicon-user"></span> Account</a></li>

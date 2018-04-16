@@ -23,6 +23,16 @@ import { AuthService } from "../auth/auth.service";
                     name="teamName"
                     required>
             </div>
+            <div class="form-group">
+            <label for="skills">Skills Needed</label>
+            <input
+                    type="text"
+                    id="skills"
+                    class="form-control"
+                    [ngModel]="team?.skills"
+                    name="skills"
+                    required>
+            </div>
             <label for="sel1">Team Size</label>
             <select 
                 class="form-control"
@@ -51,7 +61,7 @@ export class NewTeamComponent {
 
     onSubmit(form: NgForm) {
         
-        const team = new Team(form.value.teamName, form.value.teamSize, localStorage.getItem('userId'), localStorage.getItem('userEmail'));
+        const team = new Team(form.value.teamName, form.value.teamSize, form.value.skills, localStorage.getItem('userId'), localStorage.getItem('userEmail'));
         this.teamService.addTeam(team)
             .subscribe(
                 data => console.log(data),

@@ -22,7 +22,7 @@ import { AuthService } from "../auth/auth.service";
     <span style="font-size: 6em; padding-bottom: 6%; color: darkslateblue" class="glyphicon glyphicon-indent-left"></span>
     </div>
     <button style="margin-right: 2%" class="btn btn-lg btn-primary" [routerLink]="['/teams']">Tutorial</button>
-    <button style="margin-right: 2%" class="btn btn-lg btn-success" [routerLink]="['/teams']">My Teams</button>
+    <button style="margin-right: 2%" class="btn btn-lg btn-success" [routerLink]="['/teams']">My Groups</button>
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth']">Account</button>
 </div>
 <div class="text-center" style="padding-top: 5%; left: 50%; transform: translate(-50%, 0); position: fixed; padding-bottom: 5%; background-color: white">

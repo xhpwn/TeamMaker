@@ -18,8 +18,10 @@ router.post('/newteam', function (req, res, next) {
         var team = new Team({
             teamName: req.body.teamName,
             teamSize: req.body.teamSize,
+            skills: req.body.skills,
             adminId: req.body.adminId,
-            adminEmail: req.body.adminEmail
+            adminEmail: req.body.adminEmail,
+            
         });
 
         team.save(function (err, result) {

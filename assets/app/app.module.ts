@@ -13,6 +13,7 @@ import { TeamsComponent } from './uicomponents/teams.component';
 import { NoUserComponent } from './uicomponents/nouser.component';
 import { NavbarComponent } from './uicomponents/navbar.compnent';
 import { MlComponent } from './uicomponents/ml.component';
+import { TutorialComponent } from './uicomponents/tutorial.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { MlComponent } from './uicomponents/ml.component';
         HomeComponent,
         TeamsComponent,
         NoUserComponent,
-        MlComponent
+        MlComponent,
+        TutorialComponent
     ],
     imports: [
         BrowserModule,

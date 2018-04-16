@@ -27,8 +27,10 @@ export class TeamService {
                 const team = new Team(
                     result.obj.teamName,
                     result.obj.teamSize,
+                    result.obj.skills,
                     result.obj.adminId,
-                    result.obj.adminEmail);
+                    result.obj.adminEmail,
+                    result.obj._id);
                 this.teams.push(team);
                 return team;
             })
@@ -47,8 +49,10 @@ export class TeamService {
                     transformedTeams.push(new Team(
                         team.teamName,
                         team.teamSize,
+                        team.skills,
                         team.adminId,
-                        team.adminEmail)
+                        team.adminEmail,
+                        team.teamId)
                     );
                 }
                 this.teams = transformedTeams;

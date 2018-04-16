@@ -42,6 +42,14 @@ import { User } from "./user.model";
                         class="form-control"
                         formControlName="password">
             </div>
+            <div class="form-group">
+                <label for="skillset">Skillset</label>
+                <input
+                        type="text"
+                        id="skillset"
+                        class="form-control"
+                        formControlName="skillset">
+            </div>
             <button
                     class="btn btn-primary"
                     type="submit"
@@ -60,6 +68,7 @@ export class SignupComponent implements OnInit {
         const user = new User(
             this.myForm.value.email,
             this.myForm.value.password,
+            this.myForm.value.skillset,
             this.myForm.value.firstName,
             this.myForm.value.lastName
         );
@@ -77,6 +86,7 @@ export class SignupComponent implements OnInit {
         this.myForm = new FormGroup({
             firstName: new FormControl(null, Validators.required),
             lastName: new FormControl(null, Validators.required),
+            skillset: new FormControl(null, Validators.required),
             email: new FormControl(null, [
                 Validators.required,
                 Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
