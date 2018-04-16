@@ -14,9 +14,13 @@ import { TeamService } from "./team.service";
                 Owner : {{ team.adminEmail }}
             </div>
             <div class="config">
-                <a style="color: darkblue" (click)="onEdit()">View Teams</a> | 
-                <a style="color: darkblue" (click)="onEdit()">Manage Group</a> | 
-                <a style="color: darkblue" (click)="onDelete()">Delete</a>
+                <a data-toggle="collapse" data-target="#teams" style="color: darkblue" (click)="onEdit()">Teams</a> | 
+                <a data-toggle="collapse" data-target="#members" style="color: darkblue" (click)="onEdit()">Manage Group</a> | 
+                <a style="color: darkblue" (click)="onGenerate()">Generate</a>
+            </div>
+            <div id="teams" class="collapse">Teams
+            </div>
+            <div id="members" class="collapse">Members
             </div>
         </footer>
     </article>
@@ -33,6 +37,10 @@ import { TeamService } from "./team.service";
             text-align: right;
             font-size: 12px;
             width: 49%;
+            padding-bottom: 2%;
+        }
+        a:hover {
+            cursor: pointer;
         }
     `]
 })

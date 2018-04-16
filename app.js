@@ -11,7 +11,7 @@ var teamRoutes = require('./routes/team');
 var userRoutes = require('./routes/user');
 
 var app = express();
-mongoose.connect('mongodb://thespicychicken:TeamMaker1234@ds137206.mlab.com:37206/teammaker-deployment');
+mongoose.connect('mongodb://localhost:27017/node-angular');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
