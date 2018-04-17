@@ -32,10 +32,19 @@ router.post('/newteam', function (req, res, next) {
                     error: err
                 });
             }
-            user.save();
-            res.status(201).json({
-                message: 'Saved team',
-                obj: result
+            user.save(function (err, result) {
+
+                if (err) {
+                    return res.status(500).json({
+                        title: 'An error occurred',
+                        error: err
+                    });
+                }    
+
+                res.status(201).json({
+                    message: 'Saved team',
+                    obj: result
+                });
             });
         });
     });
@@ -60,6 +69,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/add/:id/:email', function (req, res, next) {
 
+    console.log(req.params.email.toString());
     User.findOne({email : req.params.email.toString()}, function (err, user) {
 
         if (err) {
@@ -81,8 +91,11 @@ router.get('/add/:id/:email', function (req, res, next) {
 
         console.log("Email should be below");
         console.log(user);
+        //console.log(groupID)
 
         Team.findOne({"teamName": groupID.toString()}, function(err, team){
+
+            //console.log(team);
             team.members.push(user);
             team.save((function (err) {
                 if (err) { 
@@ -107,6 +120,7 @@ router.get('/generate/:id', function (req, res, next) {
 
     var groupID = req.params.id;  
 
+
     Team.find({"_id": groupID.toString()}, function(err, group){
 
          if (err) {
@@ -123,10 +137,7 @@ router.get('/generate/:id', function (req, res, next) {
             });
         }
 
-        return res.status(401).json({
-                title: 'Wrong Informatio',
-                error: {message: 'Group ID does not exist'}
-            });
+        
         //console.log(group.groupNumber)
 
 
@@ -136,17 +147,71 @@ router.get('/generate/:id', function (req, res, next) {
             USE A FOR LOOP FOR THAT.
         */
 
+
+        /*
+            copiedObjectWithID is a deep clone of the group/pool itself
+        */
+        var copiedObjectWithId = JSON.parse(JSON.stringify(group));
+
+        console.log("LOL1");
+        console.log(group);
+        console.log("LOL2");
+        console.log(copiedObjectWithId);
+        console.log("LOL3");
+
+
+
+        var objectIdDel = function(copiedObjectWithId) {
+            if (copiedObjectWithId != null && typeof(copiedObjectWithId) != 'string' &&
+                typeof(copiedObjectWithId) != 'number' && typeof(copiedObjectWithId) != 'boolean' ) {
+                //for array length is defined however for objects length is undefined
+                    if (typeof(copiedObjectWithId.length) == 'undefined') { 
+                        delete copiedObjectWithId._id;
+                        for (var key in copiedObjectWithId) {
+                            objectIdDel(copiedObjectWithId[key]); //recursive del calls on object elements
+                        }
+                    }
+                    else {
+                    for (var i = 0; i < copiedObjectWithId.length; i++) {
+                        objectIdDel(copiedObjectWithId[i]);  //recursive del calls on array elements
+                    }
+                }
+            }
+        }
+
+        objectIdDel(copiedObjectWithId)
+
+        //var myGroup = group.toObject();
+
         /*
             USE TWO FOR LOOPS. FIRST TO ITERATE THROUGH ALL MEMBERS OF LIST, SECOND TO ITERATE THROUGH ALL
             OTHER MEMBERS OF LIST AND REMOVE WHEN TEAM IS ASSIGNED. MIGHT REMOVE FIRST MEMBER BEFORE ANY
             LOOPING. 
         */
 
+        
+        //TeamID actually means groupID
+        var teamID = 1;
+
+        for (var i = 0; i < copiedObjectWithId[0].members.length; i++) {
+            var current = copiedObjectWithId[0].members[i];
+            console.log(current);
+            console.log("BREAK");
+            console.log(copiedObjectWithId[0].members.length);
+
+            
+        }
+
         /*
             INSIDE INNER LOOP. ACCESS PARAMTERS FROM USER TABLE TO CALCULATE THE CLOSEST 3 USERS BY COMPARING
             SKILLS WITH PREFERENCES. THEN FIND CLOSEST FOR VICE VERSA CASE. ADD TO TABLE AND REMOVE FROM LIST.
             MAINTAIN A COUNTER VARIABLE TO MOVE NEXT TABLE ONCE CURRENT TABLE IS FULL
         */
+
+        return res.status(401).json({
+                title: 'Right Information',
+                error: {message: 'Group ID does exist'}
+            });
 
     });
 
