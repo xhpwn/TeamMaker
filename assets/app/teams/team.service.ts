@@ -64,4 +64,9 @@ export class TeamService {
             });
     }
 
+    generateTeams() {
+        return this.http.get('http://localhost:3000/team/generate')
+
+    }
+
 }

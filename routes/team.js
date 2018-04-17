@@ -60,9 +60,12 @@ router.get('/', function (req, res, next) {
 
 router.get('/generate/:id', function (req, res, next) {
     
+
+    console.log(req.params.id);
+
     var groupID = req.params.id;  
 
-    Team.find({"teamId": id.toString()}, function(err, group){
+    Team.find({"_id": groupID.toString()}, function(err, group){
 
          if (err) {
                 return res.status(500).json({
@@ -71,7 +74,7 @@ router.get('/generate/:id', function (req, res, next) {
                 });
             }
 
-        if (!team) {
+        if (!group) {
             return res.status(401).json({
                 title: 'Wrong Information',
                 error: {message: 'Group ID does not exist'}
@@ -79,7 +82,7 @@ router.get('/generate/:id', function (req, res, next) {
         }
 
         return res.status(401).json({
-                title: 'Wrong Information',
+                title: 'Wrong Informatio',
                 error: {message: 'Group ID does not exist'}
             });
         //console.log(group.groupNumber)

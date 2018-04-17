@@ -95,4 +95,11 @@ export class TeamComponent implements OnInit {
         });
     }
 
+    onGenerate() {
+        this.teamService.generateTeams()
+            .subscribe(
+                data => console.log(data),
+        );
+    }
+
 }
