@@ -93,7 +93,7 @@ router.get('/add/:id/:email', function (req, res, next) {
         console.log(user);
         //console.log(groupID)
 
-        Team.findOne({"teamName": groupID.toString()}, function(err, team){
+        Team.findOne({"_id": groupID.toString()}, function(err, team){
 
             //console.log(team);
             team.members.push(user);
@@ -105,7 +105,7 @@ router.get('/add/:id/:email', function (req, res, next) {
             console.log(team.members);
             res.status(201).json({
                 message: 'Added user',
-                obj: team
+                obj: team.members
             });
         });
 

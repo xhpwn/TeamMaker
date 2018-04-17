@@ -52,7 +52,8 @@ export class TeamService {
                         team.skills,
                         team.adminId,
                         team.adminEmail,
-                        team.teamId)
+                        team.members,
+                        team._id)
                     );
                 }
                 this.teams = transformedTeams;
@@ -69,12 +70,10 @@ export class TeamService {
 
     }
 
-    addMember(teamName: String, inviteEmail: String) {
-        console.log(inviteEmail);
+    addMember(team: Team, inviteEmail: String) {
         const body = JSON.stringify(inviteEmail);
         const headers = new Headers({'Content-Type': 'application/json'});
-        
-        return this.http.post('http://localhost:3000/team/add/' + teamName + '/' + inviteEmail, {headers: headers})
+        return this.http.get('http://localhost:3000/team/add/' + team.teamId + '/' + inviteEmail + '/', {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());

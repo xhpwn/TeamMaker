@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
         <p style="font-size: 2em; color: green; padding-bottom: 1%">Email: {{ useremail }}</p>
         <p style="font-size: 2em; color: green;">ID: {{ userId }}</p>
     </div>
-    <div class="text-center paddingclass" style="padding-bottom: 5%">
+    <div class="text-center paddingclass" style="padding-bottom: 2%">
         <a [routerLink]="['signin']"><button class="btn btn-lg btn-success marginer" *ngIf="!isLoggedIn()">Sign In</button></a>
         <a [routerLink]="['signup']"><button class="btn btn-lg btn-primary" routerLinkActive="active" *ngIf="!isLoggedIn()">Sign Up</button></a>
         <a><button class="btn btn-lg btn-danger" routerLinkActive="active" *ngIf="isLoggedIn()" (click)="onLogout()">Logout</button></a>

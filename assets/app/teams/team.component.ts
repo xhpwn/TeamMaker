@@ -27,7 +27,10 @@ import { TeamService } from "./team.service";
             <div style="padding-bottom: 2%;" id="members" class="collapse">Members
                 <div style="padding-top: 2%; padding-bottom: 2%; color: red" *ngIf="!anyMembers()">No Members yet! Add someone to this group below!
                 </div>
-                <div style="padding-top: 2%; padding-bottom: 2%; color: red" *ngIf="anyMembers()">
+                <div style="padding-top: 2%; padding-bottom: 2%; color: black" *ngIf="anyMembers()">
+                    <div *ngFor="let member of team.members">
+                        <div *ngFor="let each of member">{{each.firstName}} {{each.lastName}} : {{ each.email }}</div>
+                    </div>
                 </div>
                 <form [formGroup]="myForm" (ngSubmit)="addMember(team)">
                 <div class="form-group" style="text-align: center">
@@ -79,6 +82,8 @@ export class TeamComponent implements OnInit {
     }
 
     anyMembers() {
+        if (this.team.members != null)
+            return true;
         return false;
     }
 
@@ -88,12 +93,13 @@ export class TeamComponent implements OnInit {
 
     addMember(team: Team) {
         console.log(team);
-        this.teamService.addMember(team.teamName, this.myForm.value.inviteEmail)
+        this.teamService.addMember(team, this.myForm.value.inviteEmail)
         .subscribe(
             data => console.log(data),
             error => console.error(error)
         );
         alert("User added");
+        this.myForm.reset();
     }
 
     ngOnInit() {

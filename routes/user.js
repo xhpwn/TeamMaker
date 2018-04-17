@@ -11,8 +11,8 @@ router.post('/', function (req, res, next) {
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10),
         email: req.body.email,
-        skillset: req.body.skillset
-        //preference
+        skillset: req.body.skillset,
+        preferenceSet: req.body.preferenceSet
     });
     user.save(function(err, result) {
         if (err) {

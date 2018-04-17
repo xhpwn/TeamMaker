@@ -43,12 +43,22 @@ import { User } from "./user.model";
                         formControlName="password">
             </div>
             <div class="form-group">
-                <label for="skillset">Skillset</label>
+                <label for="skillset">Skillset</label><br>
+                Example: "Javascript: 5, Python: 4"
                 <input
                         type="text"
                         id="skillset"
                         class="form-control"
                         formControlName="skillset">
+            </div>
+            <div class="form-group">
+                <label for="preferenceSet">Preferences</label><br>
+                The teammate skillset you prefer
+                <input
+                        type="text"
+                        id="preferenceSet"
+                        class="form-control"
+                        formControlName="preferenceSet">
             </div>
             <button
                     class="btn btn-primary"
@@ -69,6 +79,7 @@ export class SignupComponent implements OnInit {
             this.myForm.value.email,
             this.myForm.value.password,
             this.myForm.value.skillset,
+            this.myForm.value.preferenceSet,
             this.myForm.value.firstName,
             this.myForm.value.lastName
         );
@@ -87,6 +98,7 @@ export class SignupComponent implements OnInit {
             firstName: new FormControl(null, Validators.required),
             lastName: new FormControl(null, Validators.required),
             skillset: new FormControl(null, Validators.required),
+            preferenceSet: new FormControl(null, Validators.required),
             email: new FormControl(null, [
                 Validators.required,
                 Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
