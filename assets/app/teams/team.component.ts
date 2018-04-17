@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, NgForm } from "@angular/forms";
 import { Component, Input, OnInit } from "@angular/core";
 import { Team } from "./team.model";
 import { TeamService } from "./team.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-team',
@@ -75,7 +76,7 @@ export class TeamComponent implements OnInit {
 
     @Input() team: Team;
 
-    constructor(private teamService: TeamService) {}
+    constructor(private teamService: TeamService, private router: Router) {}
 
     belongsToUser() {
         return localStorage.getItem('userId') == this.team.adminId;
@@ -100,6 +101,7 @@ export class TeamComponent implements OnInit {
         );
         alert("User added");
         this.myForm.reset();
+        this.router.navigate(['/home']);
     }
 
     ngOnInit() {

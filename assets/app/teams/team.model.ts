@@ -4,10 +4,10 @@ export class Team {
     skills: String;
     adminId: string;
     adminEmail: string;
-    members: [string];
+    members?: [string];
     teamId?: string;
 
-    constructor(teamName: string, teamSize: Number, skills: string, adminId: string, adminEmail: string, members: [string], teamId?: string) {
+    constructor(teamName: string, teamSize: Number, skills: string, adminId: string, adminEmail: string, members?: [string], teamId?: string) {
         this.teamName = teamName;
         this.teamSize = teamSize;
         this.skills = skills;
