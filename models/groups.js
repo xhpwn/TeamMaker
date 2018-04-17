@@ -7,8 +7,12 @@ var User = require('./user');
 
 var schema = new Schema({
     groupNumber: {type: Number, required: true},
+    teamID: {type: String, required: true},
     members: [{type: String, required: false}]
-});
+},{
+    usePushEach: true
+  }
+);
 
 schema.plugin(mongooseUniqueValidator);
     

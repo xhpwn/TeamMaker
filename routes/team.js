@@ -5,6 +5,7 @@ var jwt = require('jsonwebtoken');
 
 var Team = require('../models/team');
 var User = require('../models/user');
+var Group = require('../models/groups');
 
 router.post('/newteam', function (req, res, next) {
     var decoded = jwt.decode(req.query.token);
@@ -153,12 +154,13 @@ router.get('/generate/:id', function (req, res, next) {
         */
         var copiedObjectWithId = JSON.parse(JSON.stringify(group));
 
+        /*
         console.log("LOL1");
         console.log(group);
         console.log("LOL2");
         console.log(copiedObjectWithId);
         console.log("LOL3");
-
+        */
 
 
         var objectIdDel = function(copiedObjectWithId) {
@@ -189,18 +191,159 @@ router.get('/generate/:id', function (req, res, next) {
             LOOPING. 
         */
 
-        
-        //TeamID actually means groupID
-        var teamID = 1;
 
-        for (var i = 0; i < copiedObjectWithId[0].members.length; i++) {
-            var current = copiedObjectWithId[0].members[i];
-            console.log(current);
-            console.log("BREAK");
-            console.log(copiedObjectWithId[0].members.length);
+        var nextGroupID = 1;
+        var curGroupID = 1;
 
+        var curSize = 1;
+
+        var current = copiedObjectWithId[0].members[0];
+        var next = current;
+
+        console.log("LOLOL1")
+        var groupedTeam = new Group({
+            groupNumber: curGroupID,
+            teamID: groupID,
+            members: []
+
+            //users[]
             
+            });
+
+            console.log("LOLOL3")
+            console.log("email: " + current[0].email);
+            groupedTeam.members.push(current[0].email);
+            
+
+            groupedTeam.save(function (err, result) {
+                if (err) {
+                    console.log("Error Occured")
+                }
+                  
+            });
+
+        console.log("LOLOL2")
+
+        copiedObjectWithId[0].members.splice(0, 1);
+
+
+        //var j = 0;
+        while(true){
+            //j++;
+            if(copiedObjectWithId[0].members.length == 0)
+                break;
+
+            if(nextGroupID != curGroupID)
+                curGroupID = nextGroupID;
+
+            current = next;
+
+            var smallestDist = Number.MAX_SAFE_INTEGER;
+            var index = 0;
+
+            for (var i = 0; i < copiedObjectWithId[0].members.length; i++){
+
+                console.log(i);
+                /*FIND CLOSEST OBJECT. SAVE THAT TO NEXT. REMOVE IT FROM TEAM/POOL DATABASE, ADD TO GROUP. 
+                INCREASE COUNTER*/ 
+                var check = copiedObjectWithId[0].members[i];
+
+                /*
+                console.log("Current");
+                console.log(current);
+
+                console.log("Check");
+                console.log(check);
+                */
+
+                var skills = current[0].skillset;
+                var preference = check[0].preferenceSet;
+
+
+
+                //console.log("Skills");
+                //console.log(skills);
+
+                var skillArr = skills.split(",")
+
+                //console.log(skillArr)
+
+                //console.log("Preferences");
+                //console.log(preference);
+               
+
+                var preferenceArr = preference.split(",")
+                
+                //console.log(preferenceArr);
+                //console.log(preferenceArr[0][preferenceArr[0].length - 1]);
+
+                //BASICALLY FOR PARSING arr[i][arr[i].length - 1]
+                var temp = 0;
+                for(var counter = 0; counter < preferenceArr.length; counter++){
+
+                    temp = temp + Math.pow((skillArr[counter][skillArr[counter].length - 1] 
+                                    - preferenceArr[counter][preferenceArr[counter].length - 1]), 2);
+                }
+
+                console.log("Index: " + i);
+                console.log("Distance: " + temp);
+
+                if(temp < smallestDist){
+                    smallestDist = temp;
+                    index = i;    
+
+                    
+                }
+
+            }
+
+            console.log("Closest Match at: " + index)
+
+
+                //ADD TO TEAM/ACTUAL TEAM HERE
+                //next = whatever we remove from group/pool
+
+            next = copiedObjectWithId[0].members[index];
+
+            var groupedTeam = new Group({
+            groupNumber: curGroupID,
+            teamID: groupID,
+            members: []
+
+            //users[]
+            
+            });
+
+            console.log("Email: " + next[0].email);
+            groupedTeam.members.push(next[0].email);
+            
+
+            groupedTeam.save(function (err, result) {
+                if (err) {
+                    if (err) {
+                    console.log("Error Occured")
+                    }
+                }
+                  
+            });
+
+
+            copiedObjectWithId[0].members.splice(index, 1);
+
+
+                //THIS HAPPENS AFTER REMOVING FROM GROUP/POOL
+                //splice the shit
+
+
+                //GO TO NEXT TEAM
+            curSize++;
+            if(curSize == copiedObjectWithId[0].teamSize){
+                curSize = 0;
+                nextGroupID = curGroupID + 1;
+
+            }   
         }
+
 
         /*
             INSIDE INNER LOOP. ACCESS PARAMTERS FROM USER TABLE TO CALCULATE THE CLOSEST 3 USERS BY COMPARING
