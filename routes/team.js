@@ -20,7 +20,7 @@ router.post('/newteam', function (req, res, next) {
             teamSize: req.body.teamSize,
             skills: req.body.skills,
             adminId: req.body.adminId,
-            adminEmail: req.body.adminEmail,
+            adminEmail: req.body.adminEmail
             //users[]
             
         });
@@ -56,6 +56,48 @@ router.get('/', function (req, res, next) {
                 obj: teams
             });
         });
+});
+
+router.get('/add/:id/:email', function (req, res, next) {
+
+    User.findOne({email : req.params.email.toString()}, function (err, user) {
+
+        if (err) {
+            return res.status(500).json({
+                title: 'An error occurred',
+                error: err
+            });
+        }
+
+        if (!user) {
+          return res.status(401).json({
+                title: 'Wrong Information',
+                error: {message: 'User does not exist'}
+          });
+        }
+
+        var groupID = req.params.id;  
+
+
+        console.log("Email should be below");
+        console.log(user);
+
+        Team.findOne({"teamName": groupID.toString()}, function(err, team){
+            team.members.push(user);
+            team.save((function (err) {
+                if (err) { 
+                    console.log(err);
+                }
+            }));
+            console.log(team.members);
+            res.status(201).json({
+                message: 'Added user',
+                obj: team
+            });
+        });
+
+    });
+
 });
 
 router.get('/generate/:id', function (req, res, next) {

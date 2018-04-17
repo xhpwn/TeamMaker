@@ -11,15 +11,19 @@ var schema = new Schema({
     skills: {type: String, required: true},
     adminId: {type: String, required: true},
     adminEmail: {type: String, required: true},
+    members: [{type: Array, required: false}],
     teamId: {type: String, required: false}
-});
+}, {
+    usePushEach: true
+  }
+);
 
 schema.plugin(mongooseUniqueValidator);
 
-schema.post('remove', function (team) {
-    User.findById(team.teamId, function (err, user) {
-        user.teams.pull(team);
-        user.save();
+schema.post('add', function (user) {
+    Team.findOne({"teamName": "team.teamName"}, function (err, group) {
+        group.members.push(user);
+        team.save();
     });
 });
 

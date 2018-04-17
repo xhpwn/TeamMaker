@@ -29,7 +29,7 @@ import { TeamService } from "./team.service";
                 </div>
                 <div style="padding-top: 2%; padding-bottom: 2%; color: red" *ngIf="anyMembers()">
                 </div>
-                <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="myForm" (ngSubmit)="addMember(team)">
                 <div class="form-group" style="text-align: center">
                 <input style="margin-bottom: 2%"
                         type="text"
@@ -84,6 +84,16 @@ export class TeamComponent implements OnInit {
 
     anyTeams() {
         return false;
+    }
+
+    addMember(team: Team) {
+        console.log(team);
+        this.teamService.addMember(team.teamName, this.myForm.value.inviteEmail)
+        .subscribe(
+            data => console.log(data),
+            error => console.error(error)
+        );
+        alert("User added");
     }
 
     ngOnInit() {
