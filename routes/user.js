@@ -54,7 +54,9 @@ router.post('/signin', function(req, res, next) {
             token: token,
             userId: user._id,
             userName: user.firstName,
-            userEmail: user.email
+            userEmail: user.email,
+            skillset: user.skillset,
+            preferenceSet: user.preferenceSet
         });
     });
 });

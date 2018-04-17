@@ -7,8 +7,10 @@ import { Router } from "@angular/router";
     template: `
     <div *ngIf="isLoggedIn()" class="text-center">
         <h2 class="paddingclass">Hello, {{ username }}.</h2>
-        <p style="font-size: 2em; color: green; padding-bottom: 1%">Email: {{ useremail }}</p>
-        <p style="font-size: 2em; color: green;">ID: {{ userId }}</p>
+        <p style="font-size: 1.3em; color: green; padding-bottom: 1%">Email: {{ useremail }}</p>
+        <p style="font-size: 1.3em; color: green;">ID: {{ userId }}</p>
+        <p style="font-size: 1.3em; color: green;">Skillset: {{ skillset }}</p>
+        <p style="font-size: 1.3em; color: green;">Teammate Skill Preferences: {{ preferenceSet }}</p>
     </div>
     <div class="text-center paddingclass" style="padding-bottom: 2%">
         <a [routerLink]="['signin']"><button class="btn btn-lg btn-success marginer" *ngIf="!isLoggedIn()">Sign In</button></a>
@@ -26,12 +28,16 @@ export class AuthenticationComponent {
     username: string;
     useremail: string;
     userId: string;
+    skillset: string;
+    preferenceSet: string;
 
     isLoggedIn() {
         if (this.authService.isLoggedIn()) {
             this.username = localStorage.getItem('userName');
             this.useremail = localStorage.getItem('userEmail');
             this.userId = localStorage.getItem('userId');
+            this.skillset = localStorage.getItem('skillset');
+            this.preferenceSet = localStorage.getItem('preferenceSet');
         }
         return this.authService.isLoggedIn();
     }

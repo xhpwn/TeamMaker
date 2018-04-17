@@ -49,6 +49,8 @@ export class SigninComponent {
                     localStorage.setItem('userId', data.userId);
                     localStorage.setItem('userName', data.userName);
                     localStorage.setItem('userEmail', data.userEmail);
+                    localStorage.setItem('skillset', data.skillset);
+                    localStorage.setItem('preferenceSet', data.preferenceSet);
                     this.router.navigateByUrl('/');
                 },
                 error => console.error(error)
