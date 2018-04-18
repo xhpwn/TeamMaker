@@ -214,13 +214,14 @@ router.get('/generate/:id', function (req, res, next) {
             console.log("email: " + current[0].email);
             groupedTeam.members.push(current[0].email);
             
-
+            /*
             groupedTeam.save(function (err, result) {
                 if (err) {
                     console.log("Error Occured")
                 }
                   
             });
+            */
 
         console.log("LOLOL2")
 
@@ -305,19 +306,10 @@ router.get('/generate/:id', function (req, res, next) {
 
             next = copiedObjectWithId[0].members[index];
 
-            var groupedTeam = new Group({
-            groupNumber: curGroupID,
-            teamID: groupID,
-            members: []
-
-            //users[]
-            
-            });
-
             console.log("Email: " + next[0].email);
             groupedTeam.members.push(next[0].email);
             
-
+            /*
             groupedTeam.save(function (err, result) {
                 if (err) {
                     if (err) {
@@ -327,6 +319,7 @@ router.get('/generate/:id', function (req, res, next) {
                   
             });
 
+            */
 
             copiedObjectWithId[0].members.splice(index, 1);
 
@@ -341,8 +334,28 @@ router.get('/generate/:id', function (req, res, next) {
                 curSize = 0;
                 nextGroupID = curGroupID + 1;
 
+                groupedTeam.save(function (err, result) {
+                if (err) {
+                    if (err) {
+                    console.log("Error Occured")
+                    }
+                }
+                  
+                });
+
+                var groupedTeam = new Group({
+                groupNumber: curGroupID + 1,
+                teamID: groupID,
+                members: []
+
+            //users[]
+            
+            });
+
             }   
         }
+
+        
 
 
         /*
@@ -351,9 +364,9 @@ router.get('/generate/:id', function (req, res, next) {
             MAINTAIN A COUNTER VARIABLE TO MOVE NEXT TABLE ONCE CURRENT TABLE IS FULL
         */
 
-        return res.status(401).json({
+        return res.status(200).json({
                 title: 'Right Information',
-                error: {message: 'Group ID does exist'}
+                error: {message: 'Groups successfully created'}
             });
 
     });
