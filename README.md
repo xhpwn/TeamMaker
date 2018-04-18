@@ -1,2 +1,2 @@
 # TeamMaker
-Machine learning based team matching and generation. 
+Vector Space Model based team matching and generation. 
