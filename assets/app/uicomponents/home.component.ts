@@ -9,7 +9,7 @@ import { AuthService } from "../auth/auth.service";
 
 <h1><span class="glyphicon glyphicon-indent-left"></span> TeamMaker</h1>
 
-<h3>Machine Learning-Based Team Generation</h3>
+<h3>Vector Space Model based Team Generation</h3>
 
     <button class="btn btn-lg btn-success marginer" [routerLink]="['/auth/signin']" >Login</button>
     <button class="btn btn-lg btn-danger" [routerLink]="['/auth/signup']">Sign Up</button>
