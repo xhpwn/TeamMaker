@@ -15,7 +15,7 @@ import { Group } from "./group.model";
         </div>
         <footer class="panel-footer">
             <div class="author">
-                Owner : {{ team.adminEmail }}
+                Creator : {{ team.adminEmail }}
             </div>
             <div class="config">
                 <a data-toggle="collapse" [attr.data-target]="'#t' + team.teamId" style="color: darkblue" (click)="getGroups(team)">Teams</a> | 
