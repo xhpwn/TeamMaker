@@ -138,29 +138,12 @@ router.get('/generate/:id', function (req, res, next) {
             });
         }
 
-        
-        //console.log(group.groupNumber)
-
-
-
-        /*
-            USE GROUP ID TO ACCESS MEMBERS IN THE POOL. USE TWO POPULATE THEM INTO A LIST OF USERS.
-            USE A FOR LOOP FOR THAT.
-        */
-
-
         /*
             copiedObjectWithID is a deep clone of the group/pool itself
         */
         var copiedObjectWithId = JSON.parse(JSON.stringify(group));
 
-        /*
-        console.log("LOL1");
-        console.log(group);
-        console.log("LOL2");
-        console.log(copiedObjectWithId);
-        console.log("LOL3");
-        */
+        
 
 
         var objectIdDel = function(copiedObjectWithId) {
@@ -183,7 +166,6 @@ router.get('/generate/:id', function (req, res, next) {
 
         objectIdDel(copiedObjectWithId)
 
-        //var myGroup = group.toObject();
 
         /*
             USE TWO FOR LOOPS. FIRST TO ITERATE THROUGH ALL MEMBERS OF LIST, SECOND TO ITERATE THROUGH ALL
