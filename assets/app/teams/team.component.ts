@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { Team } from "./team.model";
 import { TeamService } from "./team.service";
 import { Router } from "@angular/router";
+import { Group } from "./group.model";
 
 @Component({
     selector: 'app-team',
@@ -17,12 +18,17 @@ import { Router } from "@angular/router";
                 Owner : {{ team.adminEmail }}
             </div>
             <div class="config">
-                <a data-toggle="collapse" [attr.data-target]="'#t' + team.teamId" style="color: darkblue" (click)="onEdit()">Teams</a> | 
+                <a data-toggle="collapse" [attr.data-target]="'#t' + team.teamId" style="color: darkblue" (click)="getGroups(team)">Teams</a> | 
                 <a data-toggle="collapse" [attr.data-target]="'#m' + team.teamId" style="color: darkblue">Members</a> | 
-                <a style="color: darkblue" (click)="onGenerate()">Generate</a>
+                <a style="color: darkblue" (click)="onGenerate(team)">Generate</a>
             </div>
             <div style="padding-bottom: 2%;" id="{{'t' + team.teamId}}" class="collapse">Teams
                 <div style="padding-top: 2%; color: red" *ngIf="!anyTeams()">No Teams yet! Hit the generate button after adding members!
+                </div>
+                <div style="padding-top: 2%; padding-bottom: 2%; color: black" *ngIf="anyTeams(groups)">
+                    <div style="padding-bottom: 2%" *ngFor="let members of groups">Group {{members.groupNumber}}:
+                        <div *ngFor="let each of members.members">{{each}}</div>
+                    </div>
                 </div>
             </div>
             <div style="padding-bottom: 2%;" id="{{'m' + team.teamId}}" class="collapse">Members
@@ -76,6 +82,8 @@ export class TeamComponent implements OnInit {
 
     @Input() team: Team;
 
+    groups: Group[];
+
     constructor(private teamService: TeamService, private router: Router) {}
 
     belongsToUser() {
@@ -88,8 +96,8 @@ export class TeamComponent implements OnInit {
         return false;
     }
 
-    anyTeams() {
-        return false;
+    anyTeams(team: Team) {
+        return true;
     }
 
     addMember(team: Team) {
@@ -113,10 +121,21 @@ export class TeamComponent implements OnInit {
         });
     }
 
-    onGenerate() {
-        this.teamService.generateTeams()
+    onGenerate(team: Team) {
+        this.teamService.generateTeams(team.teamId)
             .subscribe(
                 data => console.log(data),
+        );
+        alert("Teams Generated");
+    }
+
+    getGroups(team) {
+        console.log(team.teamId);
+        this.teamService.getGroups(team.teamId)
+            .subscribe(
+                (groups: Group[]) => {
+                    this.groups = groups;
+            }
         );
     }
 
